@@ -75,5 +75,4 @@ class Album
     SqlRunner.run(sql)
   end
 
-
 end

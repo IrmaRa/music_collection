@@ -24,7 +24,6 @@ album2 = Album.new ({
 
 album2.save
 
-
 album3 = Album.new ({
   'title' => 'Justified',
   'genre' => 'r&b',
@@ -32,7 +31,6 @@ album3 = Album.new ({
   })
 
 album3.save
-
 
 
 binding.pry
