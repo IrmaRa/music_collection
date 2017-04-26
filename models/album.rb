@@ -24,8 +24,21 @@ class Album
     #{artist_id}
     )
     RETURNING id;"
-    @id = SqlRunner.run(sql)[0]['id'].to_i
-    
+    @id = SqlRunner.run(sql)[0]['id'].to_i  
+  end
+
+  def update()
+    sql = "
+    UPDATE music_albums SET (
+      title,
+      genre,
+      artist_id
+    ) = (
+      '#{@title}',
+      #{@genre},
+      #{@artist_id} )
+    WHERE id = #{@id}"
+    SqlRunner.run(sql)
   end
 
   # def Album.find(id)
