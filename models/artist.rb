@@ -19,17 +19,25 @@ class Artist
     @id = SqlRunner.run(sql)[0]['id'].to_i
   end
 
-  def update()
-    sql = "
-    UPDATE artists SET (name) = ('#{@name}')
-    WHERE id = #{@id}"
-    SqlRunner.run(sql)
+  def Artist.find(id)
+    sql = "SELECT * FROM artists WHERE id = #{id}"
+    results = SqlRunner.run(sql)
+    artist_hash = results.first
+    artist = Artist.new(artist_hash)
+    return artist
   end
 
   def Artist.all()
     sql = "SELECT * FROM artists;"
     artists = SqlRunner.run(sql)
     return artists.map { |artist| Artist.new(artist) }
+  end
+
+  def update()
+    sql = "
+    UPDATE artists SET (name) = ('#{@name}')
+    WHERE id = #{@id}"
+    SqlRunner.run(sql)
   end
 
   def albums()
